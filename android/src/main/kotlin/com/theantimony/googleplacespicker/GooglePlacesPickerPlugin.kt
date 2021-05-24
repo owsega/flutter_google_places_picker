@@ -165,6 +165,16 @@ class GooglePlacesPickerPlugin() : FlutterPlugin, MethodCallHandler, PluginRegis
             placeMap.put("id", place.id ?: "")
             placeMap.put("name", place.name ?: "")
             placeMap.put("address", place.address ?: "")
+
+            if (place.addressComponents != null) {
+                val addressComponentMap = mutableMapOf<String, String>()
+                place.addressComponents.asList().forEach {
+                    it.types.forEach { type ->
+                        addressComponentMap.put(type, it.name);
+                    }
+                }
+                placeMap.put("address_components", addressComponentMap)
+            }
             mResult?.success(placeMap)
         } else if (p1 == AutocompleteActivity.RESULT_ERROR && p2 != null) {
             val status = Autocomplete.getStatusFromIntent(p2)

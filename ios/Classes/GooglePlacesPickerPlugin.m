@@ -127,6 +127,15 @@ NSDictionary *filterTypes;
     if (place.formattedAddress != nil) {
         mutablePlaceMap[@"address"] = place.formattedAddress;
     }
+    if (place.addressComponents != nil) {
+        NSMutableDictionary *addressComponentMap = [NSMutableDictionary dictionary];
+        for addressComponent in (place.addressComponents)! {
+            for type in (addressComponent.types) {
+                addressComponentMap[@(type)] = addressComponent.name;
+            }
+        }
+        mutablePlaceMap[@"address_components"] = addressComponentMap;
+    }
     _result(mutablePlaceMap);
 }
 
