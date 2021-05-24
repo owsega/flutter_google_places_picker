@@ -166,9 +166,9 @@ class GooglePlacesPickerPlugin() : FlutterPlugin, MethodCallHandler, PluginRegis
             placeMap.put("name", place.name ?: "")
             placeMap.put("address", place.address ?: "")
 
-            if (place.addressComponents != null) {
+            if (place.getAddressComponents() != null) {
                 val addressComponentMap = mutableMapOf<String, String>()
-                place.addressComponents.asList().forEach {
+                place.getAddressComponents().asList().forEach {
                     it.types.forEach { type ->
                         addressComponentMap.put(type, it.name);
                     }

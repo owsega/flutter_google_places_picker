@@ -8,6 +8,7 @@ class Place {
   late String id;
   String? name;
   String? address;
+  Map<String, String>? addressComponents;
 }
 
 enum PlaceAutocompleteMode { MODE_OVERLAY, MODE_FULLSCREEN }
@@ -63,6 +64,7 @@ class PluginGooglePlacePicker {
         ..name = placeMap["name"]
         ..id = placeMap["id"]
         ..address = placeMap["address"]
+        ..addressComponents = placeMap["address_components"]
         ..latitude = placeMap["latitude"]
         ..longitude = placeMap["longitude"];
     } else {
@@ -70,6 +72,7 @@ class PluginGooglePlacePicker {
         ..name = placeMap["name"]
         ..id = placeMap["id"]
         ..address = placeMap["address"]
+        ..addressComponents = placeMap["address_components"]
         ..latitude = double.parse(placeMap["latitude"])
         ..longitude = double.parse(placeMap["longitude"]);
     }
